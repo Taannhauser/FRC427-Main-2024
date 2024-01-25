@@ -5,6 +5,7 @@ import frc.robot.Constants;
 
 import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkBase.SoftLimitDirection;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 import com.revrobotics.SparkAbsoluteEncoder.Type;
@@ -42,6 +43,9 @@ public class Arm extends SubsystemBase {
         m_armMotorRight.setSmartCurrentLimit(Constants.ArmConstants.kMotorCurrentLimit);
         m_armMotorLeft.setSmartCurrentLimit(Constants.ArmConstants.kMotorCurrentLimit);
 
+        m_armMotorRight.setIdleMode(IdleMode.kBrake); 
+        m_armMotorLeft.setIdleMode(IdleMode.kBrake); 
+
         m_armMotorRight.enableSoftLimit(SoftLimitDirection.kForward, true);
         m_armMotorLeft.enableSoftLimit(SoftLimitDirection.kForward, true);
         m_armMotorRight.setSoftLimit(SoftLimitDirection.kForward, Constants.ArmConstants.kSoftLimitForward);
@@ -74,8 +78,8 @@ public class Arm extends SubsystemBase {
 
         // if the limit switch is not on and the robot arm is moving forward
         // forward defined as away from the limit switch
-        if (!limitSwitch.get() || impendingVelocity > 0) {
-                m_armMotorRight.set(impendingVelocity); 
+        if (!limitSwitch.get() || impendingVelocity >= 0) {
+            m_armMotorRight.set(impendingVelocity); 
         }
 
     }
