@@ -37,7 +37,10 @@ public class SwerveModule {
     private CANcoder absoluteTurnEncoder;
 
     // encoder for the drive wheel
-    private RelativeEncoder driveEncoder; 
+    private RelativeEncoder driveEncoder;
+    private RelativeEncoder turnEncoder;  
+
+    private String name; 
 
     // feedforward values of the drive, not necessarily needed
     private SimpleMotorFeedforward driveFeedforward = new SimpleMotorFeedforward(
@@ -56,11 +59,14 @@ public class SwerveModule {
         int kTurnEncoder = config.getEncoderId();
         double kOffset = config.getAbsoluteEncoderOffset(); 
 
+        this.name = config.getModuleName();
+
         this.turnMotor = new CANSparkMax(kTurn, MotorType.kBrushless); 
         this.driveMotor = new CANSparkMax(kDrive, MotorType.kBrushless); 
 
         this.absoluteTurnEncoder = new CANcoder(kTurnEncoder); 
         this.driveEncoder = this.driveMotor.getEncoder(); 
+        this.turnEncoder = this.turnMotor.getEncoder(); 
 
         this.turnPIDController = new SwerveTurnPIDController(absoluteTurnEncoder, 0, 0, 0); 
         this.drivePIDController = this.driveMotor.getPIDController(); 
@@ -135,10 +141,6 @@ public class SwerveModule {
      * @param driveType the type of drive to operate with
      */
     public void updateState(SwerveModuleState state, DriveState driveType) {
-        SmartDashboard.putNumber("module " + absoluteTurnEncoder.getDeviceID() + " desired speed", state.speedMetersPerSecond); 
-        SmartDashboard.putNumber("module " + absoluteTurnEncoder.getDeviceID() + " actual speed", this.driveEncoder.getVelocity()); 
-        SmartDashboard.putNumber("module " + absoluteTurnEncoder.getDeviceID() + " diff speed", state.speedMetersPerSecond - this.driveEncoder.getVelocity()); 
-
         this.targetState = state; 
 
         // optimize angles so the wheels only have to turn 90 degrees to reach their setpoint at any given time
@@ -188,6 +190,14 @@ public class SwerveModule {
     // target state (velocity & angle) of the swerve pod
     public SwerveModuleState getReferenceState() {
         return this.targetState; 
+    }
+
+    public void doSendables() {
+        SmartDashboard.putNumber(this.name + " Drive Vel (m/s)", getCurrentState().speedMetersPerSecond); 
+        SmartDashboard.putNumber(this.name + " Drive Target Vel (m/s)", getReferenceState().speedMetersPerSecond); 
+        
+        SmartDashboard.putNumber(this.name + " Turn Motor Vel (RPM)", this.turnEncoder.getVelocity()); 
+        SmartDashboard.putNumber(this.name + " Turn Absolute Angle (Deg)", this.getAngle().getDegrees()); 
     }
 
     public static enum DriveState {

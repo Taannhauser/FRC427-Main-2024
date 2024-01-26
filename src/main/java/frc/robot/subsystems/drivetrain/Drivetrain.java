@@ -62,11 +62,20 @@ public class Drivetrain extends SubsystemBase {
     SmartDashboard.putNumber("drive omega", odometry.getEstimatedPosition().getRotation().getDegrees());
     
     this.odometry.update(gyro.getRotation2d(), getPositions());
+
+    this.doSendables();
   }
 
   @Override
   public void simulationPeriodic() {
     // This method will be called once per scheduler run during simulation
+  }
+
+  public void doSendables() {
+    frontLeft.doSendables();
+    frontRight.doSendables();
+    backLeft.doSendables();
+    backRight.doSendables();
   }
 
   
