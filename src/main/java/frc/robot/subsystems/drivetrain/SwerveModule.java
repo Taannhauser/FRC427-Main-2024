@@ -23,7 +23,7 @@ import frc.robot.Constants;
 public class SwerveModule {
 
     // current target state (speed, angle) of the swerve pod
-    private SwerveModuleState targetState;
+    private SwerveModuleState targetState = new SwerveModuleState();
     
     // the turn and drive motors of the swerve pod
     private CANSparkMax turnMotor; 

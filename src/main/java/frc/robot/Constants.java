@@ -28,10 +28,10 @@ public final class Constants {
 
   public static class DrivetrainConstants {
     // Swerve IDs
-    public static SwerveModuleConfig frontLeft = new SwerveModuleConfig("FrontLeft", 2, 1, 9, -0.265869140625, true, false, SensorDirectionValue.CounterClockwise_Positive); 
-    public static SwerveModuleConfig frontRight = new SwerveModuleConfig("FrontRight", 4, 3, 10, 0.291748046875, true, true, SensorDirectionValue.CounterClockwise_Positive); 
-    public static SwerveModuleConfig backLeft = new SwerveModuleConfig("BackLeft", 8, 7, 12, -0.35986328125, true, true, SensorDirectionValue.CounterClockwise_Positive); 
-    public static SwerveModuleConfig backRight = new SwerveModuleConfig("BackRight", 6, 5, 11, -0.4599609375, true, true, SensorDirectionValue.CounterClockwise_Positive); 
+    public static SwerveModuleConfig frontLeft = new SwerveModuleConfig("FrontLeft", 2, 1, 9, -0.265869140625, false, false, SensorDirectionValue.CounterClockwise_Positive); 
+    public static SwerveModuleConfig frontRight = new SwerveModuleConfig("FrontRight", 4, 3, 10, 0.291748046875, false, true, SensorDirectionValue.CounterClockwise_Positive); 
+    public static SwerveModuleConfig backLeft = new SwerveModuleConfig("BackLeft", 8, 7, 12, -0.35986328125, false, true, SensorDirectionValue.CounterClockwise_Positive); 
+    public static SwerveModuleConfig backRight = new SwerveModuleConfig("BackRight", 6, 5, 11, -0.4599609375, false, true, SensorDirectionValue.CounterClockwise_Positive); 
 
 
     // Gearing & Conversions
@@ -86,9 +86,9 @@ public final class Constants {
 
     // found from sysid for one of the turn modules or tune by yourself
     // turn PID values for a swerve module
-    public static final double kModuleTurn_P = 0.01; 
+    public static final double kModuleTurn_P = 0.005; 
     public static final double kModuleTurn_I = 0; 
-    public static final double kModuleTurn_D = 0.0001; 
+    public static final double kModuleTurn_D = 0.0002; 
 
     // turn in place PID for the whole robot
     public static final double kTurn_P = 0.054; 

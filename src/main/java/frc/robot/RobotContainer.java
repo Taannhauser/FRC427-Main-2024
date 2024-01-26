@@ -37,6 +37,7 @@ public class RobotContainer {
       new DriverController(0);
 
   private final CommandXboxController manipulatorController = new CommandXboxController(1); 
+  
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
