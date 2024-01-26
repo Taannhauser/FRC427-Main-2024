@@ -11,6 +11,7 @@ import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -35,6 +36,8 @@ public class Drivetrain extends SubsystemBase {
   // represents the current drive state of the robot
   private DriveState driveState = DriveState.CLOSED_LOOP; 
 
+  private Field2d field = new Field2d(); 
+
   private PIDController rotationController = new PIDController(
       Constants.DrivetrainConstants.kTurn_P,
       Constants.DrivetrainConstants.kTurn_I,
@@ -55,6 +58,8 @@ public class Drivetrain extends SubsystemBase {
 
   @Override
   public void periodic() {
+    
+    SmartDashboard.putData("field", field);
     // update the odometry with the newest rotations, positions of the swerve modules
     SmartDashboard.putNumber("drive yaw", gyro.getYaw());
     SmartDashboard.putNumber("drive x", odometry.getEstimatedPosition().getX());
@@ -62,6 +67,7 @@ public class Drivetrain extends SubsystemBase {
     SmartDashboard.putNumber("drive omega", odometry.getEstimatedPosition().getRotation().getDegrees());
     
     this.odometry.update(gyro.getRotation2d(), getPositions());
+    this.field.setRobotPose(getPose());
 
     this.doSendables();
   }
@@ -72,6 +78,7 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public void doSendables() {
+    // SmartDashboard.putData("field", field);
     frontLeft.doSendables();
     frontRight.doSendables();
     backLeft.doSendables();

@@ -114,7 +114,7 @@ public final class Constants {
 
   public static class Trajectory {
     // translational PID of robot for trajectory use
-    public static final double kDrive_P = 2.25; 
+    public static final double kDrive_P = 2; // 2.25; 
     public static final double kDrive_I = 0; 
     public static final double kDrive_D = 0;
 
