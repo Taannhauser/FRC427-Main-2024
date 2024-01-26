@@ -28,14 +28,14 @@ public final class Constants {
 
   public static class DrivetrainConstants {
     // Swerve IDs
-    public static SwerveModuleConfig frontLeft = new SwerveModuleConfig(3, 4, 15, 0, false, false, SensorDirectionValue.CounterClockwise_Positive); 
-    public static SwerveModuleConfig frontRight = new SwerveModuleConfig(5, 6, 16, 0, false, false, SensorDirectionValue.CounterClockwise_Positive); 
-    public static SwerveModuleConfig backLeft = new SwerveModuleConfig(7, 8, 13, 0, false, false, SensorDirectionValue.CounterClockwise_Positive); 
-    public static SwerveModuleConfig backRight = new SwerveModuleConfig(1, 2, 14, 0, false, false, SensorDirectionValue.CounterClockwise_Positive); 
+    public static SwerveModuleConfig frontLeft = new SwerveModuleConfig(2, 1, 9, -0.265869140625, true, false, SensorDirectionValue.CounterClockwise_Positive); 
+    public static SwerveModuleConfig frontRight = new SwerveModuleConfig(4, 3, 10, 0.291748046875, true, true, SensorDirectionValue.CounterClockwise_Positive); 
+    public static SwerveModuleConfig backLeft = new SwerveModuleConfig(8, 7, 12, -0.35986328125, true, true, SensorDirectionValue.CounterClockwise_Positive); 
+    public static SwerveModuleConfig backRight = new SwerveModuleConfig(6, 5, 11, -0.4599609375, true, true, SensorDirectionValue.CounterClockwise_Positive); 
 
 
     // Gearing & Conversions
-    public static final double kGearRatio = 6.12; // driving gear ratio of each swerve module
+    public static final double kGearRatio = 6.8; // 6.12; // driving gear ratio of each swerve module
     public static final double kWheelRadiusInches = 2; // radius of the wheels
     public static final double kMetersPerRot = Units.inchesToMeters(2 * Math.PI * kWheelRadiusInches / kGearRatio); // calculate the position conversion factor of the swerve drive encoder
     public static final double kMetersPerSecondPerRPM = kMetersPerRot / 60; // calculate the velocity conversion factor of the swerve drive encoder
@@ -82,7 +82,7 @@ public final class Constants {
     public static final double kModuleDrive_P = 6.8901E-06; 
     public static final double kModuleDrive_I = 0; 
     public static final double kModuleDrive_D = 0; 
-    public static final double kModuleDrive_FF = 0.31;
+    public static final double kModuleDrive_FF = 0.226; // 0.31;
 
     // found from sysid for one of the turn modules or tune by yourself
     // turn PID values for a swerve module
@@ -157,7 +157,7 @@ public final class Constants {
 
     public static final double kPositionConversionFactor = 360;
     // velocity = position / 60
-    public static final double kVelocityConversionFactor = 360 / 60.0; 
+    public static final double kVelocityConversionFactor = kPositionConversionFactor / 60.0; 
     public static final double kTolerance = 0;
     
     public static final double kGroundPosition = 0;

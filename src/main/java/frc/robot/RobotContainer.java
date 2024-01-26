@@ -4,9 +4,6 @@
 
 package frc.robot;
 
-import frc.robot.subsystems.arm.Arm;
-import frc.robot.subsystems.arm.commands.GoToAngle;
-import frc.robot.subsystems.arm.commands.SetVelocity;
 import frc.robot.subsystems.drivetrain.Drivetrain;
 import frc.robot.subsystems.drivetrain.commands.TeleOpCommand;
 import frc.robot.util.DriverController;
@@ -31,7 +28,7 @@ public class RobotContainer {
   private final Drivetrain drivetrain = new Drivetrain();
   
   // arm of the robot
-  private final Arm arm = new Arm();
+  // private final Arm arm = new Arm();
   
  //  public Command tunegotoangle2 = new TuneGoToAngle(arm);
 
@@ -72,20 +69,20 @@ public class RobotContainer {
       .onTrue(new InstantCommand(() -> driverController.setSlowMode(Mode.SLOW)))
       .onFalse(new InstantCommand(() -> driverController.setSlowMode(Mode.NORMAL))); 
 
-    // right stick y to manually move arm
-    new Trigger(() -> manipulatorController.getRightY() < -0.5) 
-      .onTrue(new SetVelocity(arm, -Constants.ArmConstants.kTravelSpeed))
-      .onFalse(new SetVelocity(arm, 0));
+    // // right stick y to manually move arm
+    // new Trigger(() -> manipulatorController.getRightY() < -0.5) 
+    //   .onTrue(new SetVelocity(arm, -Constants.ArmConstants.kTravelSpeed))
+    //   .onFalse(new SetVelocity(arm, 0));
       
-    new Trigger(() -> manipulatorController.getRightY() > 0.5)
-      .onTrue(new SetVelocity(arm, Constants.ArmConstants.kTravelSpeed))
-      .onFalse(new SetVelocity(arm, 0));  
+    // new Trigger(() -> manipulatorController.getRightY() > 0.5)
+    //   .onTrue(new SetVelocity(arm, Constants.ArmConstants.kTravelSpeed))
+    //   .onFalse(new SetVelocity(arm, 0));  
 
-    // buttons to move arm to go to setpoints
-    manipulatorController.a().onTrue(new GoToAngle(arm, Constants.ArmConstants.kGroundPosition));
-    manipulatorController.b().onTrue(new GoToAngle(arm, Constants.ArmConstants.kTravelPosition));
-    manipulatorController.x().onTrue(new GoToAngle(arm, Constants.ArmConstants.kSpeakerPosition));
-    manipulatorController.y().onTrue(new GoToAngle(arm, Constants.ArmConstants.kAmpPosition));
+    // // buttons to move arm to go to setpoints
+    // manipulatorController.a().onTrue(new GoToAngle(arm, Constants.ArmConstants.kGroundPosition));
+    // manipulatorController.b().onTrue(new GoToAngle(arm, Constants.ArmConstants.kTravelPosition));
+    // manipulatorController.x().onTrue(new GoToAngle(arm, Constants.ArmConstants.kSpeakerPosition));
+    // manipulatorController.y().onTrue(new GoToAngle(arm, Constants.ArmConstants.kAmpPosition));
   }
   
 
