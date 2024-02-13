@@ -31,7 +31,7 @@ public final class Constants {
     public static SwerveModuleConfig frontLeft = new SwerveModuleConfig("FrontLeft", 2, 1, 9, -0.265869140625, false, false, SensorDirectionValue.CounterClockwise_Positive); 
     public static SwerveModuleConfig frontRight = new SwerveModuleConfig("FrontRight", 4, 3, 10, 0.291748046875, false, true, SensorDirectionValue.CounterClockwise_Positive); 
     public static SwerveModuleConfig backLeft = new SwerveModuleConfig("BackLeft", 8, 7, 12, -0.35986328125, false, true, SensorDirectionValue.CounterClockwise_Positive); 
-    public static SwerveModuleConfig backRight = new SwerveModuleConfig("BackRight", 6, 5, 11, -0.4599609375, false, true, SensorDirectionValue.CounterClockwise_Positive); 
+    public static SwerveModuleConfig backRight = new SwerveModuleConfig("BackRight", 5, 6, 11, -0.4599609375, false, true, SensorDirectionValue.CounterClockwise_Positive); 
 
 
     // Gearing & Conversions
@@ -45,8 +45,8 @@ public final class Constants {
     public static final double kDegreesPerSecondPerRPM = kDegreesPerRot / 60; // velocity conversion factor of the turn encoder 
 
     // Drivebase
-    public static final double kTrackWidthMeters = Units.inchesToMeters(23.0); // horizontal dist between wheels
-    public static final double kWheelBaseMeters = Units.inchesToMeters(23.0); // vertical dist between wheels
+    public static final double kTrackWidthMeters = Units.inchesToMeters(23.25); // horizontal dist between wheels
+    public static final double kWheelBaseMeters = Units.inchesToMeters(21.5); // vertical dist between wheels
 
     public static final double kDriveBaseRadius = Math.hypot(kTrackWidthMeters, kWheelBaseMeters) / 2; 
 
@@ -68,10 +68,10 @@ public final class Constants {
     // TODO: tune these
     public static double kMaxSpeedMetersPerSecond = 2.0; // max velocity (no turning) of robot; may tune to be a fraction of the attainable module speed
     public static double kMaxSlowSpeedMetersPerSecond = 1.0; 
-    public static final double kMaxAccelerationMetersPerSecondSquared = kMaxSpeedMetersPerSecond / 1.0; // max acceleration of robot (accelerate to max speed in 1 second)
+    public static final double kMaxAccelerationMetersPerSecondSquared = kMaxSpeedMetersPerSecond / 0.2; // max acceleration of robot (accelerate to max speed in 1 second)
     public static double kMaxRotationRadPerSecond = 3.14; // max rotation speed of the robot
     public static final double kMaxSlowRotationRadPerSecond = Math.PI / 2; 
-    public static final double kMaxRotationAccelerationRadPerSecondSquared = Math.PI; // max angular acceleration of robot
+    public static final double kMaxRotationAccelerationRadPerSecondSquared = kMaxRotationRadPerSecond / 0.2; // max angular acceleration of robot
 
     // feedforward values (NO NEED to tune these)
     public static final double ksVolts = 0; 
@@ -79,7 +79,7 @@ public final class Constants {
     public static final double kaVoltSecondsSquaredPerMeter = 0; 
 
     // drive speed PID values for a swerve module
-    public static final double kModuleDrive_P = 6.8901E-06; 
+    public static final double kModuleDrive_P = 0.01; 
     public static final double kModuleDrive_I = 0; 
     public static final double kModuleDrive_D = 0; 
     public static final double kModuleDrive_FF = 0.226; // 0.31;
@@ -114,14 +114,14 @@ public final class Constants {
 
   public static class Trajectory {
     // translational PID of robot for trajectory use
-    public static final double kDrive_P = 2; // 2.25; 
+    public static final double kDrive_P = 5; // 2.25; 
     public static final double kDrive_I = 0; 
-    public static final double kDrive_D = 0;
+    public static final double kDrive_D = 0.00;
 
     // angular PID (same as turn pid)
-    public static final double kOmega_P = 3.24; 
+    public static final double kOmega_P = 5; 
     public static final double kOmega_I = 0; 
-    public static final double kOmega_D = 0; 
+    public static final double kOmega_D = 0.00; 
 
     // max velocity & acceleration robot can go n following a trajectory
     public static final double kMaxVelocityMetersPerSecond = 1; 

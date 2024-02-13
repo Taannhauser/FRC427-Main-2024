@@ -27,7 +27,7 @@ public class DriverController extends CommandXboxController {
     private Supplier<Double> maxRotation = () -> mode == Mode.NORMAL ? Constants.DrivetrainConstants.kMaxRotationRadPerSecond : Constants.DrivetrainConstants.kMaxSlowRotationRadPerSecond; 
 
     public DriverController(int port) {
-        this(port, 0.05); 
+        this(port, 0.065); 
         
     }
 

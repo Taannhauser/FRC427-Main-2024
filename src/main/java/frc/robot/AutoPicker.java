@@ -33,7 +33,7 @@ public class AutoPicker {
                 new PIDConstants(Constants.Trajectory.kDrive_P, Constants.Trajectory.kDrive_I, Constants.Trajectory.kDrive_D), // PID constants to correct for translation error (used to create the X and Y PID controllers)
                 new PIDConstants(Constants.Trajectory.kOmega_P, Constants.Trajectory.kOmega_I, Constants.Trajectory.kOmega_D), 
                 Constants.DrivetrainConstants.kMaxAttainableModuleSpeedMetersPerSecond, Constants.DrivetrainConstants.kDriveBaseRadius, 
-                new ReplanningConfig()
+                new ReplanningConfig(false, false)
             ),  
             () -> {
                     // Boolean supplier that controls when the path will be mirrored for the red alliance

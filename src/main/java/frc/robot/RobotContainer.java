@@ -6,12 +6,14 @@ package frc.robot;
 
 import frc.robot.subsystems.drivetrain.Drivetrain;
 import frc.robot.subsystems.drivetrain.commands.TeleOpCommand;
+import frc.robot.subsystems.intakeit.Intakeit;
 import frc.robot.util.DriverController;
 import frc.robot.util.DriverController.Mode;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
@@ -26,6 +28,8 @@ public class RobotContainer {
 
   // drivetrain of the robot
   private final Drivetrain drivetrain = new Drivetrain();
+
+  private final Intakeit intake = new Intakeit(); 
   
   // arm of the robot
   // private final Arm arm = new Arm();
@@ -48,6 +52,16 @@ public class RobotContainer {
     // driverController.setChassisSpeedsSupplier(drivetrain::getChassisSpeeds); // comment in simulation
     // default command for drivetrain is to calculate speeds from controller and drive the robot
     drivetrain.setDefaultCommand(new TeleOpCommand(drivetrain, driverController));
+
+    // manipulatorController.rightTrigger().whileTrue(intake.outtakeSpeaker(1, 1));
+    manipulatorController.rightTrigger()
+    .onFalse(
+      intake.bottomSpeed(1)
+        .andThen(new WaitCommand(0.5))
+        .andThen(intake.stopAll())
+    )
+    .whileTrue(intake.topSpeed(1)); 
+    manipulatorController.leftTrigger().onTrue(intake.intakeNote(0.5)).onFalse(intake.stopAll()); 
   }
 
   /**
