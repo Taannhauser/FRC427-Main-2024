@@ -98,6 +98,15 @@ public class SwerveModule {
         this.turnMotor.setInverted(rotateInverted);
     }
 
+    public void doSendables() {
+        SmartDashboard.putNumber(name + " Turn Vel (arb)", this.turnMotor.getEncoder().getVelocity());
+        SmartDashboard.putNumber(name + " Drive Vel (m/s)", this.driveEncoder.getVelocity());
+
+        if (this.getReferenceState() != null) SmartDashboard.putNumber(name + "Commanded Drive Vel (m/s)", this.getReferenceState().speedMetersPerSecond); 
+
+        SmartDashboard.putNumber(name + " Abs Turn Angle (degrees)", this.getAngle().getDegrees());
+    }
+
     // sets the conversion factors for the drive encoder based on gear ratios
     private void configureEncoders(SensorDirectionValue direction, double kAbsoluteOffset) {
         this.driveEncoder.setPositionConversionFactor(Constants.DrivetrainConstants.kMetersPerRot);
@@ -192,13 +201,13 @@ public class SwerveModule {
         return this.targetState; 
     }
 
-    public void doSendables() {
-        SmartDashboard.putNumber(this.name + " Drive Vel (m/s)", getCurrentState().speedMetersPerSecond); 
-        SmartDashboard.putNumber(this.name + " Drive Target Vel (m/s)", getReferenceState().speedMetersPerSecond); 
+    // public void doSendables() {
+    //     SmartDashboard.putNumber(this.name + " Drive Vel (m/s)", getCurrentState().speedMetersPerSecond); 
+    //     SmartDashboard.putNumber(this.name + " Drive Target Vel (m/s)", getReferenceState().speedMetersPerSecond); 
         
-        SmartDashboard.putNumber(this.name + " Turn Motor Vel (RPM)", this.turnEncoder.getVelocity()); 
-        SmartDashboard.putNumber(this.name + " Turn Absolute Angle (Deg)", this.getAngle().getDegrees()); 
-    }
+    //     SmartDashboard.putNumber(this.name + " Turn Motor Vel (RPM)", this.turnEncoder.getVelocity()); 
+    //     SmartDashboard.putNumber(this.name + " Turn Absolute Angle (Deg)", this.getAngle().getDegrees()); 
+    // }
 
     public static enum DriveState {
         OPEN_LOOP, // drive the motor purely with calculations of how fast it should do; does not take into account resistance

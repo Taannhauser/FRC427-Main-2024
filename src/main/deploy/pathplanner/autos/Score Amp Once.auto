@@ -14,18 +14,18 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Sarting to Amp"
+            "pathName": "Starting to Amp 1"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "A"
+            "name": null
           }
         }
       ]
     }
   },
-  "folder": null,
+  "folder": "Archive",
   "choreoAuto": false
 }

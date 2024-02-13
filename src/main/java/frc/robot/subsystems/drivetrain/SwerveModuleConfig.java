@@ -10,7 +10,8 @@ public class SwerveModuleConfig {
     private double kAbsOffset;
     private boolean kRotateInverted;
     private boolean kDriveInverted; 
-    private SensorDirectionValue direction; 
+    private SensorDirectionValue direction;
+    private String name;  
 
     public SwerveModuleConfig(String moduleName, int kDrive, int kRotate, int kEncoder, double kAbsOffset, boolean kRotateInverted, boolean kDriveInverted, SensorDirectionValue direction) {
         this.moduleName = moduleName; 
@@ -21,6 +22,11 @@ public class SwerveModuleConfig {
         this.kRotateInverted = kRotateInverted;
         this.kDriveInverted = kDriveInverted; 
         this.direction = direction; 
+        this.name = name; 
+    }
+
+    public String getName() {
+        return this.name; 
     }
 
     public String getModuleName() {

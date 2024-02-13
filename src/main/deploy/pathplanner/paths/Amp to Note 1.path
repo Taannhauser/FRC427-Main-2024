@@ -16,16 +16,16 @@
     },
     {
       "anchor": {
-        "x": 2.61,
-        "y": 7.1
+        "x": 2.5577104734808596,
+        "y": 6.992770607832326
       },
       "prevControl": {
-        "x": 2.6287969163664684,
-        "y": 7.081004493762542
+        "x": 2.576507389847328,
+        "y": 6.973775101594868
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Intake Note 1"
+      "linkedName": "Note 1"
     }
   ],
   "rotationTargets": [],
@@ -43,7 +43,7 @@
     "rotateFast": false
   },
   "reversed": false,
-  "folder": null,
+  "folder": "Amp Note",
   "previewStartingState": null,
   "useDefaultConstraints": true
 }
