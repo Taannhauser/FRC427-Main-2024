@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  
 public class Arm extends SubsystemBase {
     
-    private static Arm instance = new Arm(); 
+    private static Arm instance = null; //new Arm(); 
 
     public static Arm getInstance() {
         return instance; 

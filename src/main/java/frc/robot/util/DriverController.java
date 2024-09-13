@@ -91,9 +91,15 @@ public class DriverController extends CommandXboxController {
         double throttleStrafe = -getLeftStickX();
         double turnX = -getRightStickX(); 
         double turnY = -getRightStickY(); 
+
+        double unsquaredSpeedForward = throttleForward * maxSpeed.get(); 
+        double unsquaredSpeedStrafe = throttleStrafe *maxSpeed.get();
+
+        double totalSpeed = ControllerUtils.squareKeepSign(Math.hypot(unsquaredSpeedForward, unsquaredSpeedStrafe)); 
+        double angle = Math.atan2(unsquaredSpeedForward, unsquaredSpeedStrafe);
         
-        double speedForward = ControllerUtils.squareKeepSign(throttleForward) * maxSpeed.get(); 
-        double speedStrafe = ControllerUtils.squareKeepSign(throttleStrafe) * maxSpeed.get(); 
+        double speedForward = totalSpeed*Math.sin(angle); 
+        double speedStrafe = totalSpeed*Math.cos(angle);
         // double speedTurn = ControllerUtils.squareKeepSign(throttleTurn) * maxRotation.get(); 
 
         ChassisState state = new ChassisState(

@@ -22,10 +22,10 @@ public class TeleOpCommand extends Command {
 
     @Override
     public void initialize() {
-        SmartDashboard.putBoolean("snap", true);
+       
         m_drivetrain.resetLastTurnedTheta(); 
         SmartDashboard.putNumber("Rotation Speed", 3.14);
-        SmartDashboard.putNumber("Linear Speed", 1.0);
+        
     }
 
     @Override

@@ -5,6 +5,7 @@
 package frc.robot;
 
 import frc.robot.subsystems.drivetrain.Drivetrain;
+import frc.robot.subsystems.drivetrain.commands.SwerveTurnTunerCommand;
 import frc.robot.subsystems.drivetrain.commands.TeleOpCommand;
 import frc.robot.subsystems.intakeit.Intakeit;
 import frc.robot.subsystems.arm.Arm;
@@ -54,8 +55,8 @@ public class RobotContainer {
   // private final Intake intake = Intake.getInstance(); 
 
   // leds!
-  private final Led led = Led.getInstance(); 
-  private final AddressableLEDSim sim = new AddressableLEDSim(led.getLED()); 
+  private final Led led = null;//Led.getInstance(); 
+  // private final AddressableLEDSim sim = new AddressableLEDSim(led.getLED()); 
 
 
   // limelight subsystem of robot
@@ -63,10 +64,10 @@ public class RobotContainer {
   private final FrontVision frontVision = FrontVision.getInstance(); 
 
   // hang mechanism of robot
-  private final Hang hang = Hang.getInstance();
+  private final Hang hang = null;//Hang.getInstance();
   
   // arm of the robot
-  private final Arm arm = Arm.getInstance();
+  private final Arm arm = null;//Arm.getInstance();
   
   private SendableChooser<LEDPattern> patterns = new SendableChooser<>();
   
@@ -149,8 +150,8 @@ public class RobotContainer {
 
   // gives the currently picked auto as the chosen auto for the match
   public Command getAutonomousCommand() {
-      // return null; 
-    return autoPicker.getAuto();
+      return null; 
+    
     // return tunerCommand;
 
   }
