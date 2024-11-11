@@ -24,8 +24,9 @@ public class TeleOpCommand extends Command {
     public void initialize() {
        
         m_drivetrain.resetLastTurnedTheta(); 
-        SmartDashboard.putNumber("Rotation Speed", 3.14);
-        
+        if (SmartDashboard.containsKey("snap")) SmartDashboard.putBoolean("snap", false); 
+        if (SmartDashboard.containsKey("Rotation Speed")) SmartDashboard.putNumber("Rotation Speed", 4); 
+        if (SmartDashboard.containsKey("Linear Speed")) SmartDashboard.putNumber("Linear Speed", 1); 
     }
 
     @Override
@@ -34,7 +35,7 @@ public class TeleOpCommand extends Command {
         Constants.DrivetrainConstants.kMaxSpeedMetersPerSecond = SmartDashboard.getNumber("Linear Speed", 1.0);
         // ensure driving does not break if gyro disconnects, will hopefully transition to robot oriented drive
        
-        if (SmartDashboard.getBoolean("snap", true)) {
+        if (SmartDashboard.getBoolean("snap", false)) {
             // align forward, align sideways, etc. 
             ChassisState speeds = m_controller.getDesiredChassisState(); 
             SmartDashboard.putNumber("x", speeds.vxMetersPerSecond); 
